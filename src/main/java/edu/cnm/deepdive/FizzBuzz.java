@@ -1,5 +1,7 @@
 package edu.cnm.deepdive;
 
+import java.util.EnumSet;
+
 /**
  * Implements a method that computes a fizzbuzz {@link String} value for any non-negative integer.
  * This implementation ignores the common form of the fizzbuzz challenge; instead, this implementation includes a method
@@ -7,10 +9,6 @@ package edu.cnm.deepdive;
  */
 
 public class FizzBuzz {
-
-    static final String FIZZ_BUZZ_VALUE = "FizzBuzz";
-    static final String FIZZ_VALUE = "Fizz";
-    static final String BUZZ_VALUE = "Buzz";
 
     /**
      * Computes and returns the {@link String} FizzBuzz value for a specified non-negative integer.
@@ -20,22 +18,16 @@ public class FizzBuzz {
      * @param value {@code int} for which the FizzBuzz value will be computed.
      * @return {@link String} corresponding to {@code value}.
      */
-    public String getFizzBuzz(int value) {
-        String str;
+    public EnumSet<FizzBuzzValue> getFizzBuzz(int value) {
+        EnumSet<FizzBuzzValue> valueSet = EnumSet.noneOf(FizzBuzzValue.class);
         if (value % 3 == 0) {
-            if (value % 5 == 0) {
-                str = FIZZ_BUZZ_VALUE;
-            } else {
-                str = FIZZ_VALUE;
-            }
-        } else if (value % 5 == 0) {
-            str = BUZZ_VALUE;
-        } else {
-            str = String.valueOf(value);
+            valueSet.add(FizzBuzzValue.FIZZ);
+        }
+        if (value % 5 ==0) {
+            valueSet.add(FizzBuzzValue.BUZZ);
         }
 
-        return str;
-
+        return valueSet;
 
     }
 
